@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Layanan - Lovely Teknologi Berkelanjutan</title>
+    <meta name="description"
+        content="Layanan energi terbarukan dari Lovely: Pembangkit Listrik Tenaga Air, Surya, dan Angin dengan teknologi terkini." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1e4b4d",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#151d1d",
+                        "lime-green": "#a3b18a",
+                        "terracotta": "#bc6c25",
+                        "dark-grey": "#343a40",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        body {
+            min-height: 100dvh;
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-[#131616] dark:text-white antialiased">
+    <!-- Overlay -->
+    <div id="overlay" class="overlay fixed inset-0 bg-black/50 z-[60] lg:hidden" onclick="toggleMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu"
+        class="mobile-menu fixed top-0 right-0 h-full w-72 bg-white dark:bg-background-dark z-[70] shadow-xl lg:hidden">
+        <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex items-center gap-2">
+                <img src="assets/images/logo.png" alt="Lovely Logo" class="h-8 w-auto" />
+            </div>
+            <button onclick="toggleMenu()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <li><a href="index.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">home</span>Beranda</a></li>
+                <li><a href="about.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">info</span>Tentang Kami</a></li>
+                <li><a href="services.html"
+                        class="flex items-center gap-3 p-3 rounded-lg bg-primary/10 text-primary font-semibold"><span
+                            class="material-symbols-outlined">engineering</span>Layanan</a></li>
+                <li><a href="blog.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">article</span>Blog</a></li>
+                <li><a href="contact.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">mail</span>Hubungi Kami</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Sticky Top Navigation -->
+    <nav
+        class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-[#dee3e3] dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="assets/images/logo.png" alt="Lovely Logo" class="h-8 lg:h-10 w-auto" />
+            </a>
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="text-[#6b7f80] hover:text-primary transition-colors">Beranda</a>
+                <a href="about.html" class="text-[#6b7f80] hover:text-primary transition-colors">Tentang Kami</a>
+                <a href="services.html" class="text-primary font-semibold">Layanan</a>
+                <a href="blog.html" class="text-[#6b7f80] hover:text-primary transition-colors">Blog</a>
+                <a href="contact.html" class="text-[#6b7f80] hover:text-primary transition-colors">Hubungi Kami</a>
+            </div>
+            <div class="hidden lg:flex items-center gap-4">
+                <a href="https://wa.me/6281234567890" target="_blank"
+                    class="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+                    <span class="material-symbols-outlined text-lg">chat</span>
+                    Hubungi Kami
+                </a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMenu()"
+                class="lg:hidden flex size-10 items-center justify-center rounded-xl bg-transparent text-[#131616] dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="pb-24">
+        <!-- Hero Section -->
+        <section class="py-8 lg:py-16">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <div class="max-w-3xl">
+                    <h1 class="text-[32px] lg:text-[56px] font-bold leading-tight mb-4">Keahlian Kami</h1>
+                    <p class="text-[#6b7f80] text-base lg:text-xl leading-relaxed">
+                        Merintis infrastruktur berkelanjutan melalui rekayasa presisi dan solusi energi bersih yang
+                        disesuaikan untuk masa depan.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Cards -->
+        <section class="pb-12 lg:pb-20">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <div class="grid md:grid-cols-2 gap-6 lg:gap-8">
+                    <!-- Service Card 1: Hydropower -->
+                    <div
+                        class="group flex flex-col rounded-2xl shadow-sm bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-shadow">
+                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAklcdYR2agRDYmn0ip3baJNH2MbnYlHjUepQrS5_uVa7uOIQ-oPXxedR8U-ymc3u1U7j1a-0I3SVfZYCeYrY-nM0xTGqZaXiYZ5hauB0qscnsyg7k7mTU511kevxyC22QsGSWipjroxSAm0x7HcT8cGSf_dJPX81LDbw6j6fWTG81SJ5IUvb3pYUTnv-4PmnFqJBLIcrWrRNW4G0Hgk_QtxHiHZ46hh2CNjuXBTzFwp9v_8W-h60sGTTG_wcAUhCTCm9AyKbrEgVs');">
+                        </div>
+                        <div class="flex flex-col gap-4 p-5 lg:p-6">
+                            <div class="flex flex-wrap gap-2">
+                                <div
+                                    class="flex h-7 items-center justify-center rounded-full bg-primary/10 px-3 border border-primary/20">
+                                    <p
+                                        class="text-primary dark:text-white/90 text-xs font-bold uppercase tracking-wider">
+                                        Pembangkit Air</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h3
+                                    class="text-[#131616] dark:text-white text-xl lg:text-2xl font-bold leading-tight tracking-tight">
+                                    Sistem Turbin Canggih</h3>
+                                <p class="text-[#6b7f80] dark:text-gray-400 text-sm lg:text-base mt-2 leading-relaxed">
+                                    Pembangkit listrik tenaga air efisiensi tinggi menggunakan komponen inti daur ulang
+                                    dan dinamika fluida presisi.</p>
+                            </div>
+                            <div
+                                class="grid grid-cols-3 gap-2 p-3 lg:p-4 bg-background-light dark:bg-gray-800/50 rounded-xl">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] lg:text-xs uppercase font-bold text-gray-400">Lokasi</span>
+                                    <span class="text-xs lg:text-sm font-semibold">Jawa Barat</span>
+                                </div>
+                                <div class="flex flex-col border-l border-gray-200 dark:border-gray-700 pl-3">
+                                    <span
+                                        class="text-[10px] lg:text-xs uppercase font-bold text-gray-400">Kapasitas</span>
+                                    <span class="text-xs lg:text-sm font-semibold">50 MW</span>
+                                </div>
+                                <div class="flex flex-col border-l border-gray-200 dark:border-gray-700 pl-3">
+                                    <span
+                                        class="text-[10px] lg:text-xs uppercase font-bold text-gray-400">Material</span>
+                                    <span class="text-xs lg:text-sm font-semibold">Baja</span>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/6281234567890?text=Halo%20Lovely,%20saya%20tertarik%20dengan%20layanan%20Pembangkit%20Listrik%20Tenaga%20Air.%20Mohon%20informasi%20lebih%20lanjut."
+                                target="_blank"
+                                class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl h-12 lg:h-14 px-4 bg-primary text-white text-sm lg:text-base font-bold active:scale-[0.98] transition-transform">
+                                <span class="material-symbols-outlined text-lg">chat</span>
+                                <span>Konsultasi via WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 2: Solar -->
+                    <div
+                        class="group flex flex-col rounded-2xl shadow-sm bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-shadow">
+                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB2ksAsWoTGpDncZTwdccWvfMlSzrEdaM2VVuUs151NUNbdNiw9vxqdIn7WvZPj-swZd7O-37sA-97sRZ8Xz3_UyyI_XvkCF2kWTP38WDEiJUcPe72b1du6CuFJHocYDtzF1BPcUNz8qlTqFUVnj6_4RbyS20fnwdbVdRrP-YAzyzTgrt6EGCEW3sJIDiC0LXZwayNBplEoyXLc7phHvYNa-0Qoctchaxbv_EK9a_UR4efeL3p4aUI3bV-wFTZmL-RpdOTY7HSygrA');">
+                        </div>
+                        <div class="flex flex-col gap-4 p-5 lg:p-6">
+                            <div class="flex flex-wrap gap-2">
+                                <div
+                                    class="flex h-7 items-center justify-center rounded-full bg-lime-green/10 px-3 border border-lime-green/20">
+                                    <p
+                                        class="text-lime-green dark:text-white/90 text-xs font-bold uppercase tracking-wider">
+                                        Energi Surya</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h3
+                                    class="text-[#131616] dark:text-white text-xl lg:text-2xl font-bold leading-tight tracking-tight">
+                                    Panel Surya Industri</h3>
+                                <p class="text-[#6b7f80] dark:text-gray-400 text-sm lg:text-base mt-2 leading-relaxed">
+                                    Integrasi fotovoltaik skala besar untuk kompleks industri dengan pemantauan
+                                    smart-grid.</p>
+                            </div>
+                            <div
+                                class="grid grid-cols-3 gap-2 p-3 lg:p-4 bg-background-light dark:bg-gray-800/50 rounded-xl">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] lg:text-xs uppercase font-bold text-gray-400">Lokasi</span>
+                                    <span class="text-xs lg:text-sm font-semibold">NTT</span>
+                                </div>
+                                <div class="flex flex-col border-l border-gray-200 dark:border-gray-700 pl-3">
+                                    <span
+                                        class="text-[10px] lg:text-xs uppercase font-bold text-gray-400">Kapasitas</span>
+                                    <span class="text-xs lg:text-sm font-semibold">120 MW</span>
+                                </div>
+                                <div class="flex flex-col border-l border-gray-200 dark:border-gray-700 pl-3">
+                                    <span
+                                        class="text-[10px] lg:text-xs uppercase font-bold text-gray-400">Material</span>
+                                    <span class="text-xs lg:text-sm font-semibold">Silikon</span>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/6281234567890?text=Halo%20Lovely,%20saya%20tertarik%20dengan%20layanan%20Panel%20Surya%20Industri.%20Mohon%20informasi%20lebih%20lanjut."
+                                target="_blank"
+                                class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl h-12 lg:h-14 px-4 bg-primary text-white text-sm lg:text-base font-bold active:scale-[0.98] transition-transform">
+                                <span class="material-symbols-outlined text-lg">chat</span>
+                                <span>Konsultasi via WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 3: Wind -->
+                    <div
+                        class="group flex flex-col rounded-2xl shadow-sm bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-shadow">
+                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBmLfGr3H1rE7XOm1I5J2Tj4gPqmfAOEa3IHjbhxT7JYhZQw3mZ23elbpOQ0VBbuFCFRwT9JxRsO28hDPsHcUEykundEGBFq9VrFbGPKe00w-OfXxJZSXIu7zWZCGNphAMsk-7A4l91KwAcG5Joe--n-qp9VX2qAYgB_axh4g83Gc7fc56Lcp5joEejSNy5KqzyECJ-Z3Q3av6m62ytuA_L_yloPvk_pPouO01UO8tyYeRo6-9o_UFmA6B4WtN0j91RmXnoZ9ZWyzo');">
+                        </div>
+                        <div class="flex flex-col gap-4 p-5 lg:p-6">
+                            <div class="flex flex-wrap gap-2">
+                                <div
+                                    class="flex h-7 items-center justify-center rounded-full bg-terracotta/10 px-3 border border-terracotta/20">
+                                    <p
+                                        class="text-terracotta dark:text-white/90 text-xs font-bold uppercase tracking-wider">
+                                        Tenaga Angin</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h3
+                                    class="text-[#131616] dark:text-white text-xl lg:text-2xl font-bold leading-tight tracking-tight">
+                                    Aerodinamika Lepas Pantai</h3>
+                                <p class="text-[#6b7f80] dark:text-gray-400 text-sm lg:text-base mt-2 leading-relaxed">
+                                    Ladang angin lepas pantai berkelanjutan yang dirancang untuk meminimalkan dampak
+                                    lingkungan pada kehidupan laut.</p>
+                            </div>
+                            <div
+                                class="grid grid-cols-3 gap-2 p-3 lg:p-4 bg-background-light dark:bg-gray-800/50 rounded-xl">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] lg:text-xs uppercase font-bold text-gray-400">Lokasi</span>
+                                    <span class="text-xs lg:text-sm font-semibold">Sulawesi</span>
+                                </div>
+                                <div class="flex flex-col border-l border-gray-200 dark:border-gray-700 pl-3">
+                                    <span
+                                        class="text-[10px] lg:text-xs uppercase font-bold text-gray-400">Kapasitas</span>
+                                    <span class="text-xs lg:text-sm font-semibold">85 MW</span>
+                                </div>
+                                <div class="flex flex-col border-l border-gray-200 dark:border-gray-700 pl-3">
+                                    <span
+                                        class="text-[10px] lg:text-xs uppercase font-bold text-gray-400">Material</span>
+                                    <span class="text-xs lg:text-sm font-semibold">Karbon</span>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/6281234567890?text=Halo%20Lovely,%20saya%20tertarik%20dengan%20layanan%20Tenaga%20Angin%20Lepas%20Pantai.%20Mohon%20informasi%20lebih%20lanjut."
+                                target="_blank"
+                                class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl h-12 lg:h-14 px-4 bg-primary text-white text-sm lg:text-base font-bold active:scale-[0.98] transition-transform">
+                                <span class="material-symbols-outlined text-lg">chat</span>
+                                <span>Konsultasi via WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 4: Geothermal -->
+                    <div
+                        class="group flex flex-col rounded-2xl shadow-sm bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-shadow">
+                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover"
+                            style="background-image: url('https://images.unsplash.com/photo-1626552978832-f90423a9e7de?w=800&q=80');">
+                        </div>
+                        <div class="flex flex-col gap-4 p-5 lg:p-6">
+                            <div class="flex flex-wrap gap-2">
+                                <div
+                                    class="flex h-7 items-center justify-center rounded-full bg-terracotta/10 px-3 border border-terracotta/20">
+                                    <p
+                                        class="text-terracotta dark:text-white/90 text-xs font-bold uppercase tracking-wider">
+                                        Panas Bumi</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h3
+                                    class="text-[#131616] dark:text-white text-xl lg:text-2xl font-bold leading-tight tracking-tight">
+                                    Energi Geotermal</h3>
+                                <p class="text-[#6b7f80] dark:text-gray-400 text-sm lg:text-base mt-2 leading-relaxed">
+                                    Memanfaatkan panas bumi untuk menghasilkan energi listrik yang stabil dan ramah
+                                    lingkungan.</p>
+                            </div>
+                            <div
+                                class="grid grid-cols-3 gap-2 p-3 lg:p-4 bg-background-light dark:bg-gray-800/50 rounded-xl">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] lg:text-xs uppercase font-bold text-gray-400">Lokasi</span>
+                                    <span class="text-xs lg:text-sm font-semibold">Jawa Timur</span>
+                                </div>
+                                <div class="flex flex-col border-l border-gray-200 dark:border-gray-700 pl-3">
+                                    <span
+                                        class="text-[10px] lg:text-xs uppercase font-bold text-gray-400">Kapasitas</span>
+                                    <span class="text-xs lg:text-sm font-semibold">200 MW</span>
+                                </div>
+                                <div class="flex flex-col border-l border-gray-200 dark:border-gray-700 pl-3">
+                                    <span
+                                        class="text-[10px] lg:text-xs uppercase font-bold text-gray-400">Material</span>
+                                    <span class="text-xs lg:text-sm font-semibold">Titanium</span>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/6281234567890?text=Halo%20Lovely,%20saya%20tertarik%20dengan%20layanan%20Energi%20Geotermal.%20Mohon%20informasi%20lebih%20lanjut."
+                                target="_blank"
+                                class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl h-12 lg:h-14 px-4 bg-primary text-white text-sm lg:text-base font-bold active:scale-[0.98] transition-transform">
+                                <span class="material-symbols-outlined text-lg">chat</span>
+                                <span>Konsultasi via WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 5: Biomass -->
+                    <div
+                        class="group flex flex-col rounded-2xl shadow-sm bg-white dark:bg-gray-900 border border-gray-100 dark:border-gray-800 overflow-hidden hover:shadow-xl transition-shadow md:col-span-2 lg:col-span-1">
+                        <div class="w-full bg-center bg-no-repeat aspect-video bg-cover"
+                            style="background-image: url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80');">
+                        </div>
+                        <div class="flex flex-col gap-4 p-5 lg:p-6">
+                            <div class="flex flex-wrap gap-2">
+                                <div
+                                    class="flex h-7 items-center justify-center rounded-full bg-lime-green/10 px-3 border border-lime-green/20">
+                                    <p
+                                        class="text-lime-green dark:text-white/90 text-xs font-bold uppercase tracking-wider">
+                                        Biomassa</p>
+                                </div>
+                            </div>
+                            <div>
+                                <h3
+                                    class="text-[#131616] dark:text-white text-xl lg:text-2xl font-bold leading-tight tracking-tight">
+                                    Energi Biomassa</h3>
+                                <p class="text-[#6b7f80] dark:text-gray-400 text-sm lg:text-base mt-2 leading-relaxed">
+                                    Konversi limbah organik menjadi energi listrik dan biogas untuk kebutuhan industri
+                                    dan rumah tangga.</p>
+                            </div>
+                            <div
+                                class="grid grid-cols-3 gap-2 p-3 lg:p-4 bg-background-light dark:bg-gray-800/50 rounded-xl">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] lg:text-xs uppercase font-bold text-gray-400">Lokasi</span>
+                                    <span class="text-xs lg:text-sm font-semibold">Kalimantan</span>
+                                </div>
+                                <div class="flex flex-col border-l border-gray-200 dark:border-gray-700 pl-3">
+                                    <span
+                                        class="text-[10px] lg:text-xs uppercase font-bold text-gray-400">Kapasitas</span>
+                                    <span class="text-xs lg:text-sm font-semibold">30 MW</span>
+                                </div>
+                                <div class="flex flex-col border-l border-gray-200 dark:border-gray-700 pl-3">
+                                    <span
+                                        class="text-[10px] lg:text-xs uppercase font-bold text-gray-400">Material</span>
+                                    <span class="text-xs lg:text-sm font-semibold">Organik</span>
+                                </div>
+                            </div>
+                            <a href="https://wa.me/6281234567890?text=Halo%20Lovely,%20saya%20tertarik%20dengan%20layanan%20Energi%20Biomassa.%20Mohon%20informasi%20lebih%20lanjut."
+                                target="_blank"
+                                class="flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl h-12 lg:h-14 px-4 bg-primary text-white text-sm lg:text-base font-bold active:scale-[0.98] transition-transform">
+                                <span class="material-symbols-outlined text-lg">chat</span>
+                                <span>Konsultasi via WhatsApp</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-12 lg:py-20">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <div
+                    class="bg-gradient-to-br from-primary to-primary/80 rounded-2xl lg:rounded-3xl p-8 lg:p-16 text-white text-center">
+                    <span class="material-symbols-outlined text-5xl lg:text-7xl mb-4">support_agent</span>
+                    <h3 class="text-[28px] lg:text-[44px] font-bold mb-4">Butuh Konsultasi?</h3>
+                    <p class="text-white/80 text-base lg:text-xl max-w-2xl mx-auto mb-8">Tim ahli kami siap membantu
+                        Anda menemukan solusi energi terbarukan yang tepat untuk kebutuhan Anda.</p>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Lovely,%20saya%20ingin%20konsultasi%20tentang%20layanan%20energi%20terbarukan."
+                        target="_blank"
+                        class="inline-flex items-center gap-2 bg-white text-primary font-bold py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors text-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326z" />
+                        </svg>
+                        Konsultasi Gratis
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-background-dark border-t border-[#dee3e3] dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                <div class="lg:col-span-1">
+                    <img src="assets/images/logo.png" alt="Lovely Logo" class="h-8 w-auto mb-4" />
+                    <p class="text-[#6b7f80] text-sm mb-4">Menciptakan teknologi yang bernapas bersama planet ini.</p>
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="size-10 rounded-full border border-[#dee3e3] dark:border-white/10 flex items-center justify-center text-[#131616] dark:text-white hover:bg-primary hover:text-white hover:border-primary transition-colors">
+                            <span class="material-symbols-outlined text-xl">public</span>
+                        </a>
+                        <a href="#"
+                            class="size-10 rounded-full border border-[#dee3e3] dark:border-white/10 flex items-center justify-center text-[#131616] dark:text-white hover:bg-primary hover:text-white hover:border-primary transition-colors">
+                            <span class="material-symbols-outlined text-xl">alternate_email</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Layanan</h4>
+                    <ul class="space-y-2 text-sm text-[#6b7f80]">
+                        <li><a href="services.html" class="hover:text-primary">Energi Surya</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Tenaga Angin</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Hidropower</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Geotermal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Perusahaan</h4>
+                    <ul class="space-y-2 text-sm text-[#6b7f80]">
+                        <li><a href="about.html" class="hover:text-primary">Tentang Kami</a></li>
+                        <li><a href="blog.html" class="hover:text-primary">Blog</a></li>
+                        <li><a href="contact.html" class="hover:text-primary">Hubungi Kami</a></li>
+                        <li><a href="#" class="hover:text-primary">Karir</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Kontak</h4>
+                    <ul class="space-y-2 text-sm text-[#6b7f80]">
+                        <li class="flex items-start gap-2"><span
+                                class="material-symbols-outlined text-lg">location_on</span>Jl. Inovasi Hijau No. 123,
+                            Jakarta</li>
+                        <li class="flex items-start gap-2"><span
+                                class="material-symbols-outlined text-lg">mail</span>hello@lovely.id</li>
+                        <li class="flex items-start gap-2"><span
+                                class="material-symbols-outlined text-lg">call</span>+62 812 3456 7890</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-[#dee3e3] dark:border-white/10 mt-8 pt-8 text-center text-sm text-[#6b7f80]">
+                <p>© 2024 Lovely Tech. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6281234567890" target="_blank"
+        class="fixed bottom-20 right-4 lg:bottom-8 lg:right-8 z-[55] bg-[#25D366] hover:bg-[#128C7E] text-white w-14 h-14 lg:w-16 lg:h-16 rounded-full shadow-lg flex items-center justify-center transition-all active:scale-95">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16"
+            class="lg:w-8 lg:h-8">
+            <path
+                d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326z" />
+        </svg>
+    </a>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="scrollToTop()"
+        class="fixed bottom-4 right-4 lg:bottom-8 lg:right-28 z-[55] bg-primary hover:bg-primary/90 text-white w-12 h-12 lg:w-14 lg:h-14 rounded-full shadow-lg flex items-center justify-center transition-all active:scale-95 opacity-0 invisible">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('overlay');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Back to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/Hide Back to Top Button
+        window.addEventListener('scroll', function () {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+    </script>
+</body>
+
+</html>

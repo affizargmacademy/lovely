@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Lovely - Teknologi Berkelanjutan untuk Masa Depan</title>
+    <meta name="description"
+        content="Lovely adalah perusahaan teknologi berkelanjutan yang fokus pada energi terbarukan dan solusi ramah lingkungan untuk Indonesia." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1e4b4d",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#151d1d",
+                        "lime-green": "#a3b18a",
+                        "terracotta": "#bc6c25",
+                        "dark-grey": "#343a40",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        body {
+            min-height: 100dvh;
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-[#131616] dark:text-white antialiased">
+    <!-- Overlay for Mobile Menu -->
+    <div id="overlay" class="overlay fixed inset-0 bg-black/50 z-[60] lg:hidden" onclick="toggleMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu"
+        class="mobile-menu fixed top-0 right-0 h-full w-72 bg-white dark:bg-background-dark z-[70] shadow-xl lg:hidden">
+        <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex items-center gap-2">
+                <img src="assets/images/logo.png" alt="Lovely Logo" class="h-8 w-auto" />
+            </div>
+            <button onclick="toggleMenu()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <li><a href="index.html"
+                        class="flex items-center gap-3 p-3 rounded-lg bg-primary/10 text-primary font-semibold"><span
+                            class="material-symbols-outlined">home</span>Beranda</a></li>
+                <li><a href="about.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">info</span>Tentang Kami</a></li>
+                <li><a href="services.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">engineering</span>Layanan</a></li>
+                <li><a href="blog.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">article</span>Blog</a></li>
+                <li><a href="contact.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">mail</span>Hubungi Kami</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Sticky Top Navigation -->
+    <nav
+        class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-[#dee3e3] dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="assets/images/logo.png" alt="Lovely Logo" class="h-8 lg:h-10 w-auto" />
+            </a>
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="text-primary font-semibold">Beranda</a>
+                <a href="about.html" class="text-[#6b7f80] hover:text-primary transition-colors">Tentang Kami</a>
+                <a href="services.html" class="text-[#6b7f80] hover:text-primary transition-colors">Layanan</a>
+                <a href="blog.html" class="text-[#6b7f80] hover:text-primary transition-colors">Blog</a>
+                <a href="contact.html" class="text-[#6b7f80] hover:text-primary transition-colors">Hubungi Kami</a>
+            </div>
+            <div class="hidden lg:flex items-center gap-4">
+                <a href="https://wa.me/6281234567890" target="_blank"
+                    class="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+                    <span class="material-symbols-outlined text-lg">chat</span>
+                    Hubungi Kami
+                </a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMenu()"
+                class="lg:hidden flex size-10 items-center justify-center rounded-xl bg-transparent text-[#131616] dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="pb-24">
+        <!-- Hero Section -->
+        <section class="relative">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8 py-8 lg:py-16">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                    <div class="order-2 lg:order-1">
+                        <span
+                            class="inline-block px-4 py-1.5 bg-primary/10 text-primary text-sm font-semibold rounded-full mb-4">🌱
+                            Teknologi Berkelanjutan</span>
+                        <h1 class="text-[32px] lg:text-[56px] font-bold leading-tight mb-4 lg:mb-6">Membangun Masa Depan
+                            yang <span class="text-primary">Lebih Hijau</span></h1>
+                        <p class="text-[#6b7f80] text-base lg:text-lg leading-relaxed mb-6 lg:mb-8">Lovely menghadirkan
+                            solusi energi terbarukan dan teknologi ramah lingkungan untuk Indonesia. Bersama kita
+                            ciptakan dunia yang lebih baik untuk generasi mendatang.</p>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <a href="services.html"
+                                class="flex items-center justify-center gap-2 bg-primary text-white px-6 py-3.5 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                                <span class="material-symbols-outlined">explore</span>
+                                Jelajahi Layanan
+                            </a>
+                            <a href="https://wa.me/6281234567890?text=Halo%20Lovely,%20saya%20ingin%20konsultasi."
+                                target="_blank"
+                                class="flex items-center justify-center gap-2 bg-white border-2 border-primary text-primary px-6 py-3.5 rounded-xl font-semibold hover:bg-primary/5 transition-colors">
+                                <span class="material-symbols-outlined">chat</span>
+                                Konsultasi Gratis
+                            </a>
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2">
+                        <div class="rounded-2xl overflow-hidden shadow-2xl">
+                            <img src="assets/images/hero-cabin.png" alt="Kabins ramah lingkungan di tengah hutan"
+                                class="w-full aspect-[4/3] lg:aspect-[16/12] object-cover" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="bg-primary text-white py-8 lg:py-12">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 text-center">
+                    <div>
+                        <p class="text-3xl lg:text-5xl font-bold mb-1">4.8M</p>
+                        <p class="text-white/70 text-sm lg:text-base">Ton CO₂ Tersimpan</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl lg:text-5xl font-bold mb-1">150+</p>
+                        <p class="text-white/70 text-sm lg:text-base">Proyek Selesai</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl lg:text-5xl font-bold mb-1">25K</p>
+                        <p class="text-white/70 text-sm lg:text-base">Rumah Teraliri</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl lg:text-5xl font-bold mb-1">98%</p>
+                        <p class="text-white/70 text-sm lg:text-base">Kepuasan Klien</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section class="py-12 lg:py-20">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <div class="text-center mb-8 lg:mb-12">
+                    <h2 class="text-[28px] lg:text-[40px] font-bold mb-3">Layanan Kami</h2>
+                    <p class="text-[#6b7f80] text-base lg:text-lg max-w-2xl mx-auto">Solusi energi terbarukan terdepan
+                        untuk kebutuhan residensial, komersial, dan industri.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Service 1 -->
+                    <div
+                        class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 group hover:shadow-xl transition-shadow">
+                        <div class="aspect-video bg-cover bg-center"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAklcdYR2agRDYmn0ip3baJNH2MbnYlHjUepQrS5_uVa7uOIQ-oPXxedR8U-ymc3u1U7j1a-0I3SVfZYCeYrY-nM0xTGqZaXiYZ5hauB0qscnsyg7k7mTU511kevxyC22QsGSWipjroxSAm0x7HcT8cGSf_dJPX81LDbw6j6fWTG81SJ5IUvb3pYUTnv-4PmnFqJBLIcrWrRNW4G0Hgk_QtxHiHZ46hh2CNjuXBTzFwp9v_8W-h60sGTTG_wcAUhCTCm9AyKbrEgVs');">
+                        </div>
+                        <div class="p-5 lg:p-6">
+                            <span
+                                class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full mb-3">HIDROPOWER</span>
+                            <h3 class="text-lg lg:text-xl font-bold mb-2">Pembangkit Tenaga Air</h3>
+                            <p class="text-[#6b7f80] text-sm mb-4">Sistem turbin canggih dengan efisiensi tinggi untuk
+                                pembangkit listrik ramah lingkungan.</p>
+                            <a href="services.html"
+                                class="inline-flex items-center gap-1 text-primary font-semibold text-sm group-hover:gap-2 transition-all">
+                                Pelajari Lebih Lanjut <span
+                                    class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Service 2 -->
+                    <div
+                        class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 group hover:shadow-xl transition-shadow">
+                        <div class="aspect-video bg-cover bg-center"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB2ksAsWoTGpDncZTwdccWvfMlSzrEdaM2VVuUs151NUNbdNiw9vxqdIn7WvZPj-swZd7O-37sA-97sRZ8Xz3_UyyI_XvkCF2kWTP38WDEiJUcPe72b1du6CuFJHocYDtzF1BPcUNz8qlTqFUVnj6_4RbyS20fnwdbVdRrP-YAzyzTgrt6EGCEW3sJIDiC0LXZwayNBplEoyXLc7phHvYNa-0Qoctchaxbv_EK9a_UR4efeL3p4aUI3bV-wFTZmL-RpdOTY7HSygrA');">
+                        </div>
+                        <div class="p-5 lg:p-6">
+                            <span
+                                class="inline-block px-3 py-1 bg-lime-green/10 text-lime-green text-xs font-bold rounded-full mb-3">SURYA</span>
+                            <h3 class="text-lg lg:text-xl font-bold mb-2">Panel Surya Industri</h3>
+                            <p class="text-[#6b7f80] text-sm mb-4">Integrasi fotovoltaik skala besar dengan pemantauan
+                                smart-grid untuk efisiensi maksimal.</p>
+                            <a href="services.html"
+                                class="inline-flex items-center gap-1 text-primary font-semibold text-sm group-hover:gap-2 transition-all">
+                                Pelajari Lebih Lanjut <span
+                                    class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Service 3 -->
+                    <div
+                        class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 group hover:shadow-xl transition-shadow">
+                        <div class="aspect-video bg-cover bg-center"
+                            style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBmLfGr3H1rE7XOm1I5J2Tj4gPqmfAOEa3IHjbhxT7JYhZQw3mZ23elbpOQ0VBbuFCFRwT9JxRsO28hDPsHcUEykundEGBFq9VrFbGPKe00w-OfXxJZSXIu7zWZCGNphAMsk-7A4l91KwAcG5Joe--n-qp9VX2qAYgB_axh4g83Gc7fc56Lcp5joEejSNy5KqzyECJ-Z3Q3av6m62ytuA_L_yloPvk_pPouO01UO8tyYeRo6-9o_UFmA6B4WtN0j91RmXnoZ9ZWyzo');">
+                        </div>
+                        <div class="p-5 lg:p-6">
+                            <span
+                                class="inline-block px-3 py-1 bg-terracotta/10 text-terracotta text-xs font-bold rounded-full mb-3">ANGIN</span>
+                            <h3 class="text-lg lg:text-xl font-bold mb-2">Tenaga Angin Lepas Pantai</h3>
+                            <p class="text-[#6b7f80] text-sm mb-4">Ladang angin lepas pantai berkelanjutan dengan dampak
+                                minimal pada lingkungan laut.</p>
+                            <a href="services.html"
+                                class="inline-flex items-center gap-1 text-primary font-semibold text-sm group-hover:gap-2 transition-all">
+                                Pelajari Lebih Lanjut <span
+                                    class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center mt-8">
+                    <a href="services.html"
+                        class="inline-flex items-center gap-2 text-primary font-semibold hover:underline">
+                        Lihat Semua Layanan <span class="material-symbols-outlined">arrow_forward</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="py-12 lg:py-20 bg-white dark:bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
+                    <div class="rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800&q=80"
+                            alt="Tim Lovely bekerja di lapangan" class="w-full aspect-[4/3] object-cover" />
+                    </div>
+                    <div>
+                        <span
+                            class="inline-block px-4 py-1.5 bg-lime-green/10 text-lime-green text-sm font-semibold rounded-full mb-4">Tentang
+                            Kami</span>
+                        <h2 class="text-[28px] lg:text-[40px] font-bold mb-4 lg:mb-6">Cerita Kami dalam Mewujudkan
+                            Energi Bersih</h2>
+                        <p class="text-[#6b7f80] text-base lg:text-lg leading-relaxed mb-6">Sejak 2020, Lovely telah
+                            berkomitmen untuk menghadirkan solusi energi terbarukan yang terjangkau dan efisien. Kami
+                            percaya bahwa transisi ke energi bersih adalah tanggung jawab kita semua.</p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-lime-green mt-0.5">check_circle</span>
+                                <span>Tim ahli berpengalaman lebih dari 10 tahun</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-lime-green mt-0.5">check_circle</span>
+                                <span>Teknologi terkini dengan standar internasional</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="material-symbols-outlined text-lime-green mt-0.5">check_circle</span>
+                                <span>Layanan purna jual dan maintenance 24/7</span>
+                            </li>
+                        </ul>
+                        <a href="about.html"
+                            class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl font-semibold hover:bg-primary/90 transition-colors">
+                            Pelajari Lebih Lanjut <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investment Section -->
+        <section id="investment" class="py-12 lg:py-20">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <div class="text-center mb-8 lg:mb-12">
+                    <h2 class="text-[28px] lg:text-[40px] font-bold mb-3">Investasi Energi Hijau</h2>
+                    <p class="text-[#6b7f80] text-base lg:text-lg max-w-2xl mx-auto">Bergabunglah dengan ribuan investor
+                        yang telah mempercayakan dana mereka untuk masa depan yang lebih berkelanjutan.</p>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Package 1 -->
+                    <div
+                        class="bg-white dark:bg-gray-900 rounded-2xl p-6 lg:p-8 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl transition-shadow">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-primary text-2xl">solar_power</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Paket Starter</h3>
+                                <p class="text-xs text-[#6b7f80]">Energi Surya</p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="text-3xl lg:text-4xl font-bold">Rp 5jt</span>
+                            <span class="text-[#6b7f80]">/ min. investasi</span>
+                        </div>
+                        <ul class="space-y-2 mb-6 text-sm">
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-lime-green text-lg">check</span>ROI hingga 12%
+                                per tahun</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-lime-green text-lg">check</span>Laporan
+                                bulanan transparan</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-lime-green text-lg">check</span>Tenor 2-3
+                                tahun</li>
+                        </ul>
+                        <button onclick="openInvestModal('Paket Starter', 'Rp 5.000.000', 'Energi Surya')"
+                            class="w-full py-3 bg-primary text-white font-semibold rounded-xl hover:bg-primary/90 transition-colors">
+                            Investasi Sekarang
+                        </button>
+                    </div>
+                    <!-- Package 2 -->
+                    <div class="bg-primary text-white rounded-2xl p-6 lg:p-8 shadow-xl relative overflow-hidden">
+                        <div class="absolute top-4 right-4 px-3 py-1 bg-white/20 text-xs font-bold rounded-full">POPULER
+                        </div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-2xl">wind_power</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Paket Growth</h3>
+                                <p class="text-xs text-white/70">Tenaga Angin</p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="text-3xl lg:text-4xl font-bold">Rp 25jt</span>
+                            <span class="text-white/70">/ min. investasi</span>
+                        </div>
+                        <ul class="space-y-2 mb-6 text-sm">
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-lime-green text-lg">check</span>ROI hingga 15%
+                                per tahun</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-lime-green text-lg">check</span>Priority
+                                support</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-lime-green text-lg">check</span>Tenor 3-5
+                                tahun</li>
+                        </ul>
+                        <button onclick="openInvestModal('Paket Growth', 'Rp 25.000.000', 'Tenaga Angin')"
+                            class="w-full py-3 bg-white text-primary font-semibold rounded-xl hover:bg-gray-100 transition-colors">
+                            Investasi Sekarang
+                        </button>
+                    </div>
+                    <!-- Package 3 -->
+                    <div
+                        class="bg-white dark:bg-gray-900 rounded-2xl p-6 lg:p-8 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-xl transition-shadow">
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-terracotta/10 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-terracotta text-2xl">water</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-lg">Paket Premium</h3>
+                                <p class="text-xs text-[#6b7f80]">Hidropower</p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <span class="text-3xl lg:text-4xl font-bold">Rp 100jt</span>
+                            <span class="text-[#6b7f80]">/ min. investasi</span>
+                        </div>
+                        <ul class="space-y-2 mb-6 text-sm">
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-lime-green text-lg">check</span>ROI hingga 18%
+                                per tahun</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-lime-green text-lg">check</span>Dedicated
+                                account manager</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-lime-green text-lg">check</span>Tenor 5-10
+                                tahun</li>
+                        </ul>
+                        <button onclick="openInvestModal('Paket Premium', 'Rp 100.000.000', 'Hidropower')"
+                            class="w-full py-3 bg-primary text-white font-semibold rounded-xl hover:bg-primary/90 transition-colors">
+                            Investasi Sekarang
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-12 lg:py-20">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <div
+                    class="bg-gradient-to-br from-primary to-primary/80 rounded-2xl lg:rounded-3xl p-8 lg:p-16 text-white text-center">
+                    <span class="material-symbols-outlined text-5xl lg:text-7xl mb-4">eco</span>
+                    <h2 class="text-[28px] lg:text-[44px] font-bold mb-4">Siap Beralih ke Energi Bersih?</h2>
+                    <p class="text-white/80 text-base lg:text-xl max-w-2xl mx-auto mb-8">Konsultasikan kebutuhan energi
+                        Anda dengan tim ahli kami secara gratis dan tanpa komitmen.</p>
+                    <a href="https://wa.me/6281234567890?text=Halo%20Lovely,%20saya%20ingin%20konsultasi%20tentang%20energi%20terbarukan."
+                        target="_blank"
+                        class="inline-flex items-center gap-2 bg-white text-primary font-bold py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors text-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                            viewBox="0 0 16 16">
+                            <path
+                                d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
+                        </svg>
+                        Konsultasi via WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Investment Modal -->
+    <div id="investModal" class="fixed inset-0 z-[80] hidden">
+        <div class="absolute inset-0 bg-black/50" onclick="closeInvestModal()"></div>
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] max-w-md bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-2xl">
+            <button onclick="closeInvestModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="text-center mb-6">
+                <div class="w-16 h-16 mx-auto rounded-full bg-primary/10 flex items-center justify-center mb-4">
+                    <span class="material-symbols-outlined text-primary text-3xl">payments</span>
+                </div>
+                <h3 class="text-xl font-bold" id="modalTitle">Investasi</h3>
+                <p class="text-[#6b7f80] text-sm" id="modalSubtitle">Detail paket</p>
+            </div>
+            <form id="investForm">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Nama Lengkap</label>
+                        <input type="text" id="investName" required
+                            class="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary dark:bg-gray-800" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Nomor WhatsApp</label>
+                        <input type="tel" id="investPhone" required
+                            class="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary dark:bg-gray-800" />
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-1">Jumlah Investasi</label>
+                        <input type="text" id="investAmount" required
+                            class="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary dark:bg-gray-800" />
+                    </div>
+                </div>
+                <button type="submit"
+                    class="w-full mt-6 py-3 bg-primary text-white font-semibold rounded-xl hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326z" />
+                    </svg>
+                    Lanjutkan via WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-background-dark border-t border-[#dee3e3] dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                <div class="lg:col-span-1">
+                    <img src="assets/images/logo.png" alt="Lovely Logo" class="h-8 w-auto mb-4" />
+                    <p class="text-[#6b7f80] text-sm mb-4">Menciptakan teknologi yang bernapas bersama planet ini.</p>
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="size-10 rounded-full border border-[#dee3e3] dark:border-white/10 flex items-center justify-center text-[#131616] dark:text-white hover:bg-primary hover:text-white hover:border-primary transition-colors">
+                            <span class="material-symbols-outlined text-xl">public</span>
+                        </a>
+                        <a href="#"
+                            class="size-10 rounded-full border border-[#dee3e3] dark:border-white/10 flex items-center justify-center text-[#131616] dark:text-white hover:bg-primary hover:text-white hover:border-primary transition-colors">
+                            <span class="material-symbols-outlined text-xl">alternate_email</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Layanan</h4>
+                    <ul class="space-y-2 text-sm text-[#6b7f80]">
+                        <li><a href="services.html" class="hover:text-primary">Energi Surya</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Tenaga Angin</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Hidropower</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Geotermal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Perusahaan</h4>
+                    <ul class="space-y-2 text-sm text-[#6b7f80]">
+                        <li><a href="about.html" class="hover:text-primary">Tentang Kami</a></li>
+                        <li><a href="blog.html" class="hover:text-primary">Blog</a></li>
+                        <li><a href="contact.html" class="hover:text-primary">Hubungi Kami</a></li>
+                        <li><a href="#" class="hover:text-primary">Karir</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Kontak</h4>
+                    <ul class="space-y-2 text-sm text-[#6b7f80]">
+                        <li class="flex items-start gap-2"><span
+                                class="material-symbols-outlined text-lg">location_on</span>Jl. Inovasi Hijau No. 123,
+                            Jakarta</li>
+                        <li class="flex items-start gap-2"><span
+                                class="material-symbols-outlined text-lg">mail</span>hello@lovely.id</li>
+                        <li class="flex items-start gap-2"><span
+                                class="material-symbols-outlined text-lg">call</span>+62 812 3456 7890</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-[#dee3e3] dark:border-white/10 mt-8 pt-8 text-center text-sm text-[#6b7f80]">
+                <p>© 2024 Lovely Tech. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6281234567890?text=Halo%20Lovely,%20saya%20tertarik%20untuk%20mengetahui%20lebih%20lanjut%20tentang%20layanan%20Anda."
+        target="_blank"
+        class="fixed bottom-20 right-4 lg:bottom-8 lg:right-8 z-[55] bg-[#25D366] hover:bg-[#128C7E] text-white w-14 h-14 lg:w-16 lg:h-16 rounded-full shadow-lg flex items-center justify-center transition-all active:scale-95">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16"
+            class="lg:w-8 lg:h-8">
+            <path
+                d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
+        </svg>
+    </a>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="scrollToTop()"
+        class="fixed bottom-4 right-4 lg:bottom-8 lg:right-28 z-[55] bg-primary hover:bg-primary/90 text-white w-12 h-12 lg:w-14 lg:h-14 rounded-full shadow-lg flex items-center justify-center transition-all active:scale-95 opacity-0 invisible">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('overlay');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Back to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/Hide Back to Top Button
+        window.addEventListener('scroll', function () {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        // Investment Modal
+        let currentPackage = {};
+
+        function openInvestModal(name, amount, type) {
+            currentPackage = { name, amount, type };
+            document.getElementById('modalTitle').textContent = name;
+            document.getElementById('modalSubtitle').textContent = `${type} - Min. ${amount}`;
+            document.getElementById('investAmount').value = amount;
+            document.getElementById('investModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeInvestModal() {
+            document.getElementById('investModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('investForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('investName').value;
+            const phone = document.getElementById('investPhone').value;
+            const amount = document.getElementById('investAmount').value;
+
+            const message = `Halo Lovely,%0A%0ASaya ingin berinvestasi:%0A%0ANama: ${name}%0ATelepon: ${phone}%0APaket: ${currentPackage.name}%0AJenis: ${currentPackage.type}%0AJumlah: ${amount}`;
+
+            window.open(`https://wa.me/6281234567890?text=${message}`, '_blank');
+            closeInvestModal();
+        });
+    </script>
+</body>
+
+</html>

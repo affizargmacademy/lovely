@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Hubungi Kami - Lovely Teknologi Berkelanjutan</title>
+    <meta name="description"
+        content="Hubungi tim Lovely untuk konsultasi energi terbarukan. Kami siap membantu Anda dengan solusi berkelanjutan." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1e4b4d",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#151d1d",
+                        "lime-green": "#a3b18a",
+                        "terracotta": "#bc6c25",
+                        "dark-grey": "#343a40",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        body {
+            min-height: 100dvh;
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-[#131616] dark:text-white antialiased">
+    <!-- Overlay -->
+    <div id="overlay" class="overlay fixed inset-0 bg-black/50 z-[60] lg:hidden" onclick="toggleMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu"
+        class="mobile-menu fixed top-0 right-0 h-full w-72 bg-white dark:bg-background-dark z-[70] shadow-xl lg:hidden">
+        <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex items-center gap-2">
+                <img src="assets/images/logo.png" alt="Lovely Logo" class="h-8 w-auto" />
+            </div>
+            <button onclick="toggleMenu()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <li><a href="index.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">home</span>Beranda</a></li>
+                <li><a href="about.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">info</span>Tentang Kami</a></li>
+                <li><a href="services.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">engineering</span>Layanan</a></li>
+                <li><a href="blog.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">article</span>Blog</a></li>
+                <li><a href="contact.html"
+                        class="flex items-center gap-3 p-3 rounded-lg bg-primary/10 text-primary font-semibold"><span
+                            class="material-symbols-outlined">mail</span>Hubungi Kami</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Sticky Top Navigation -->
+    <nav
+        class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-[#dee3e3] dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="assets/images/logo.png" alt="Lovely Logo" class="h-8 lg:h-10 w-auto" />
+            </a>
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="text-[#6b7f80] hover:text-primary transition-colors">Beranda</a>
+                <a href="about.html" class="text-[#6b7f80] hover:text-primary transition-colors">Tentang Kami</a>
+                <a href="services.html" class="text-[#6b7f80] hover:text-primary transition-colors">Layanan</a>
+                <a href="blog.html" class="text-[#6b7f80] hover:text-primary transition-colors">Blog</a>
+                <a href="contact.html" class="text-primary font-semibold">Hubungi Kami</a>
+            </div>
+            <div class="hidden lg:flex items-center gap-4">
+                <a href="https://wa.me/6281234567890" target="_blank"
+                    class="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+                    <span class="material-symbols-outlined text-lg">chat</span>
+                    Hubungi Kami
+                </a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMenu()"
+                class="lg:hidden flex size-10 items-center justify-center rounded-xl bg-transparent text-[#131616] dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="pb-24">
+        <!-- Hero Section -->
+        <section class="py-8 lg:py-16">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto">
+                    <h1 class="text-[32px] lg:text-[56px] font-bold leading-tight mb-4">Hubungi Kami</h1>
+                    <p class="text-[#6b7f80] text-base lg:text-xl">
+                        Kami siap membantu Anda menemukan solusi energi berkelanjutan yang tepat. Hubungi kami sekarang!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Contact -->
+        <section class="mb-8 lg:mb-12">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <div class="grid md:grid-cols-3 gap-4 lg:gap-6">
+                    <a href="https://wa.me/6281234567890?text=Halo%20Lovely,%20saya%20ingin%20konsultasi."
+                        target="_blank"
+                        class="bg-[#25D366] text-white rounded-2xl p-5 lg:p-6 flex items-center gap-4 hover:bg-[#128C7E] transition-colors">
+                        <div
+                            class="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                viewBox="0 0 16 16" class="lg:w-7 lg:h-7">
+                                <path
+                                    d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base lg:text-lg">WhatsApp</h3>
+                            <p class="text-sm text-white/80">Chat langsung sekarang</p>
+                        </div>
+                    </a>
+                    <a href="mailto:hello@lovely.id"
+                        class="bg-primary text-white rounded-2xl p-5 lg:p-6 flex items-center gap-4 hover:bg-primary/90 transition-colors">
+                        <div
+                            class="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined text-2xl lg:text-3xl">mail</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base lg:text-lg">Email</h3>
+                            <p class="text-sm text-white/80">hello@lovely.id</p>
+                        </div>
+                    </a>
+                    <a href="tel:+6281234567890"
+                        class="bg-terracotta text-white rounded-2xl p-5 lg:p-6 flex items-center gap-4 hover:bg-terracotta/90 transition-colors">
+                        <div
+                            class="w-12 h-12 lg:w-14 lg:h-14 rounded-full bg-white/20 flex items-center justify-center flex-shrink-0">
+                            <span class="material-symbols-outlined text-2xl lg:text-3xl">call</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-base lg:text-lg">Telepon</h3>
+                            <p class="text-sm text-white/80">+62 812 3456 7890</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Form and Info -->
+        <section class="py-8 lg:py-12">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <div class="grid lg:grid-cols-2 gap-8 lg:gap-12">
+                    <!-- Contact Form -->
+                    <div
+                        class="bg-white dark:bg-gray-900 rounded-2xl p-6 lg:p-8 border border-gray-100 dark:border-gray-800 shadow-sm">
+                        <h2 class="text-xl lg:text-2xl font-bold mb-6">Kirim Pesan</h2>
+                        <form id="contactForm" class="space-y-4 lg:space-y-5">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-1.5">Nama Lengkap *</label>
+                                    <input type="text" id="name" required
+                                        class="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary dark:bg-gray-800 text-sm lg:text-base"
+                                        placeholder="Masukkan nama Anda" />
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-1.5">Email *</label>
+                                    <input type="email" id="email" required
+                                        class="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary dark:bg-gray-800 text-sm lg:text-base"
+                                        placeholder="email@contoh.com" />
+                                </div>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium mb-1.5">Nomor Telepon *</label>
+                                    <input type="tel" id="phone" required
+                                        class="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary dark:bg-gray-800 text-sm lg:text-base"
+                                        placeholder="+62 812 3456 7890" />
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-1.5">Subjek</label>
+                                    <select id="subject"
+                                        class="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary dark:bg-gray-800 text-sm lg:text-base">
+                                        <option value="Konsultasi Umum">Konsultasi Umum</option>
+                                        <option value="Energi Surya">Energi Surya</option>
+                                        <option value="Tenaga Angin">Tenaga Angin</option>
+                                        <option value="Hidropower">Hidropower</option>
+                                        <option value="Investasi">Investasi</option>
+                                        <option value="Kerjasama">Kerjasama Bisnis</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium mb-1.5">Pesan *</label>
+                                <textarea id="message" required rows="4"
+                                    class="w-full px-4 py-3 border border-gray-200 dark:border-gray-700 rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary dark:bg-gray-800 resize-none text-sm lg:text-base"
+                                    placeholder="Ceritakan kebutuhan Anda..."></textarea>
+                            </div>
+                            <button type="submit"
+                                class="w-full py-3 lg:py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-colors flex items-center justify-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                    viewBox="0 0 16 16">
+                                    <path
+                                        d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326z" />
+                                </svg>
+                                Kirim via WhatsApp
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Office Info -->
+                    <div class="space-y-6">
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-2xl p-6 lg:p-8 border border-gray-100 dark:border-gray-800 shadow-sm">
+                            <h3 class="text-lg lg:text-xl font-bold mb-4">Kantor Pusat</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start gap-4">
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                        <span class="material-symbols-outlined text-primary">location_on</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold mb-1">Alamat</h4>
+                                        <p class="text-sm text-[#6b7f80]">Jl. Inovasi Hijau No. 123<br />Menteng,
+                                            Jakarta Pusat 10310</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div
+                                        class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                                        <span class="material-symbols-outlined text-primary">schedule</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-semibold mb-1">Jam Operasional</h4>
+                                        <p class="text-sm text-[#6b7f80]">Senin - Jumat: 08.00 - 17.00 WIB<br />Sabtu:
+                                            09.00 - 14.00 WIB</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Map -->
+                        <div
+                            class="bg-white dark:bg-gray-900 rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 shadow-sm">
+                            <div class="aspect-[16/9] bg-gray-200 dark:bg-gray-800 flex items-center justify-center">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.4665318772285!2d106.8295843!3d-6.2003399!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f401bb8968e1%3A0x40c75c76f101da7d!2sMenteng%2C%20Jakarta%20Pusat!5e0!3m2!1sid!2sid!4v1706442240000!5m2!1sid!2sid"
+                                    width="100%" height="100%" style="border:0; min-height: 200px;" allowfullscreen=""
+                                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="py-12 lg:py-20 bg-white dark:bg-gray-900">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <div class="text-center mb-8 lg:mb-12">
+                    <h2 class="text-[28px] lg:text-[40px] font-bold mb-3">Pertanyaan Umum</h2>
+                    <p class="text-[#6b7f80] text-base lg:text-lg max-w-2xl mx-auto">Temukan jawaban untuk pertanyaan
+                        yang sering diajukan tentang layanan kami.</p>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-4">
+                    <div
+                        class="bg-background-light dark:bg-background-dark rounded-xl border border-gray-100 dark:border-gray-800">
+                        <button onclick="toggleFAQ(this)"
+                            class="w-full flex items-center justify-between p-5 lg:p-6 text-left">
+                            <span class="font-semibold text-sm lg:text-base pr-4">Berapa lama waktu yang dibutuhkan
+                                untuk instalasi panel surya?</span>
+                            <span
+                                class="material-symbols-outlined text-primary transition-transform flex-shrink-0">expand_more</span>
+                        </button>
+                        <div class="hidden px-5 lg:px-6 pb-5 lg:pb-6">
+                            <p class="text-sm lg:text-base text-[#6b7f80]">Untuk instalasi residensial standar, proses
+                                instalasi biasanya membutuhkan waktu 1-3 hari. Untuk proyek komersial atau industri yang
+                                lebih besar, waktu instalasi bisa mencapai 1-4 minggu tergantung skala proyek.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-background-light dark:bg-background-dark rounded-xl border border-gray-100 dark:border-gray-800">
+                        <button onclick="toggleFAQ(this)"
+                            class="w-full flex items-center justify-between p-5 lg:p-6 text-left">
+                            <span class="font-semibold text-sm lg:text-base pr-4">Apakah ada garansi untuk produk dan
+                                layanan?</span>
+                            <span
+                                class="material-symbols-outlined text-primary transition-transform flex-shrink-0">expand_more</span>
+                        </button>
+                        <div class="hidden px-5 lg:px-6 pb-5 lg:pb-6">
+                            <p class="text-sm lg:text-base text-[#6b7f80]">Ya, kami menyediakan garansi produk hingga 25
+                                tahun untuk panel surya dan 10 tahun untuk inverter. Selain itu, kami juga memberikan
+                                garansi jasa instalasi selama 2 tahun.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-background-light dark:bg-background-dark rounded-xl border border-gray-100 dark:border-gray-800">
+                        <button onclick="toggleFAQ(this)"
+                            class="w-full flex items-center justify-between p-5 lg:p-6 text-left">
+                            <span class="font-semibold text-sm lg:text-base pr-4">Bagaimana cara menghitung kebutuhan
+                                energi untuk rumah saya?</span>
+                            <span
+                                class="material-symbols-outlined text-primary transition-transform flex-shrink-0">expand_more</span>
+                        </button>
+                        <div class="hidden px-5 lg:px-6 pb-5 lg:pb-6">
+                            <p class="text-sm lg:text-base text-[#6b7f80]">Tim konsultan kami akan melakukan survei
+                                lokasi dan analisis konsumsi listrik Anda secara gratis. Kami akan menghitung kebutuhan
+                                panel surya berdasarkan rata-rata penggunaan listrik bulanan dan kondisi atap rumah
+                                Anda.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-background-light dark:bg-background-dark rounded-xl border border-gray-100 dark:border-gray-800">
+                        <button onclick="toggleFAQ(this)"
+                            class="w-full flex items-center justify-between p-5 lg:p-6 text-left">
+                            <span class="font-semibold text-sm lg:text-base pr-4">Apakah tersedia opsi pembiayaan atau
+                                cicilan?</span>
+                            <span
+                                class="material-symbols-outlined text-primary transition-transform flex-shrink-0">expand_more</span>
+                        </button>
+                        <div class="hidden px-5 lg:px-6 pb-5 lg:pb-6">
+                            <p class="text-sm lg:text-base text-[#6b7f80]">Ya, kami bekerja sama dengan beberapa bank
+                                dan lembaga keuangan untuk menyediakan opsi pembiayaan dengan cicilan hingga 60 bulan.
+                                Hubungi tim kami untuk informasi lebih detail tentang skema pembayaran.</p>
+                        </div>
+                    </div>
+                    <div
+                        class="bg-background-light dark:bg-background-dark rounded-xl border border-gray-100 dark:border-gray-800">
+                        <button onclick="toggleFAQ(this)"
+                            class="w-full flex items-center justify-between p-5 lg:p-6 text-left">
+                            <span class="font-semibold text-sm lg:text-base pr-4">Bagaimana dengan maintenance dan
+                                perawatan sistem?</span>
+                            <span
+                                class="material-symbols-outlined text-primary transition-transform flex-shrink-0">expand_more</span>
+                        </button>
+                        <div class="hidden px-5 lg:px-6 pb-5 lg:pb-6">
+                            <p class="text-sm lg:text-base text-[#6b7f80]">Sistem energi terbarukan umumnya membutuhkan
+                                perawatan minimal. Kami menyediakan layanan maintenance berkala dan monitoring 24/7
+                                untuk memastikan sistem Anda berjalan optimal. Tim support kami siap membantu jika ada
+                                kendala.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-background-dark border-t border-[#dee3e3] dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                <div class="lg:col-span-1">
+                    <img src="assets/images/logo.png" alt="Lovely Logo" class="h-8 w-auto mb-4" />
+                    <p class="text-[#6b7f80] text-sm mb-4">Menciptakan teknologi yang bernapas bersama planet ini.</p>
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="size-10 rounded-full border border-[#dee3e3] dark:border-white/10 flex items-center justify-center text-[#131616] dark:text-white hover:bg-primary hover:text-white hover:border-primary transition-colors">
+                            <span class="material-symbols-outlined text-xl">public</span>
+                        </a>
+                        <a href="#"
+                            class="size-10 rounded-full border border-[#dee3e3] dark:border-white/10 flex items-center justify-center text-[#131616] dark:text-white hover:bg-primary hover:text-white hover:border-primary transition-colors">
+                            <span class="material-symbols-outlined text-xl">alternate_email</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Layanan</h4>
+                    <ul class="space-y-2 text-sm text-[#6b7f80]">
+                        <li><a href="services.html" class="hover:text-primary">Energi Surya</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Tenaga Angin</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Hidropower</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Geotermal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Perusahaan</h4>
+                    <ul class="space-y-2 text-sm text-[#6b7f80]">
+                        <li><a href="about.html" class="hover:text-primary">Tentang Kami</a></li>
+                        <li><a href="blog.html" class="hover:text-primary">Blog</a></li>
+                        <li><a href="contact.html" class="hover:text-primary">Hubungi Kami</a></li>
+                        <li><a href="#" class="hover:text-primary">Karir</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Kontak</h4>
+                    <ul class="space-y-2 text-sm text-[#6b7f80]">
+                        <li class="flex items-start gap-2"><span
+                                class="material-symbols-outlined text-lg">location_on</span>Jl. Inovasi Hijau No. 123,
+                            Jakarta</li>
+                        <li class="flex items-start gap-2"><span
+                                class="material-symbols-outlined text-lg">mail</span>hello@lovely.id</li>
+                        <li class="flex items-start gap-2"><span
+                                class="material-symbols-outlined text-lg">call</span>+62 812 3456 7890</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-[#dee3e3] dark:border-white/10 mt-8 pt-8 text-center text-sm text-[#6b7f80]">
+                <p>© 2024 Lovely Tech. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6281234567890" target="_blank"
+        class="fixed bottom-20 right-4 lg:bottom-8 lg:right-8 z-[55] bg-[#25D366] hover:bg-[#128C7E] text-white w-14 h-14 lg:w-16 lg:h-16 rounded-full shadow-lg flex items-center justify-center transition-all active:scale-95">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16"
+            class="lg:w-8 lg:h-8">
+            <path
+                d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326z" />
+        </svg>
+    </a>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="scrollToTop()"
+        class="fixed bottom-4 right-4 lg:bottom-8 lg:right-28 z-[55] bg-primary hover:bg-primary/90 text-white w-12 h-12 lg:w-14 lg:h-14 rounded-full shadow-lg flex items-center justify-center transition-all active:scale-95 opacity-0 invisible">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('overlay');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Back to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/Hide Back to Top Button
+        window.addEventListener('scroll', function () {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+
+        // FAQ Toggle
+        function toggleFAQ(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('.material-symbols-outlined');
+
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+        }
+
+        // Contact Form Submit
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            const waMessage = `Halo Lovely,%0A%0ASaya ingin menghubungi Anda:%0A%0ANama: ${name}%0AEmail: ${email}%0ATelepon: ${phone}%0ASubjek: ${subject}%0A%0APesan:%0A${encodeURIComponent(message)}`;
+
+            window.open(`https://wa.me/6281234567890?text=${waMessage}`, '_blank');
+        });
+    </script>
+</body>
+
+</html>

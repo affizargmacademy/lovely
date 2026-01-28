@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Blog - Lovely Teknologi Berkelanjutan</title>
+    <meta name="description"
+        content="Baca artikel terbaru tentang energi terbarukan, keberlanjutan, dan inovasi teknologi hijau dari Lovely." />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700&display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1e4b4d",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#151d1d",
+                        "lime-green": "#a3b18a",
+                        "terracotta": "#bc6c25",
+                        "dark-grey": "#343a40",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+        }
+
+        body {
+            min-height: 100dvh;
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark font-display text-[#131616] dark:text-white antialiased">
+    <!-- Overlay -->
+    <div id="overlay" class="overlay fixed inset-0 bg-black/50 z-[60] lg:hidden" onclick="toggleMenu()"></div>
+
+    <!-- Mobile Menu -->
+    <div id="mobileMenu"
+        class="mobile-menu fixed top-0 right-0 h-full w-72 bg-white dark:bg-background-dark z-[70] shadow-xl lg:hidden">
+        <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+            <div class="flex items-center gap-2">
+                <img src="assets/images/logo.png" alt="Lovely Logo" class="h-8 w-auto" />
+            </div>
+            <button onclick="toggleMenu()" class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <nav class="p-4">
+            <ul class="space-y-2">
+                <li><a href="index.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">home</span>Beranda</a></li>
+                <li><a href="about.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">info</span>Tentang Kami</a></li>
+                <li><a href="services.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">engineering</span>Layanan</a></li>
+                <li><a href="blog.html"
+                        class="flex items-center gap-3 p-3 rounded-lg bg-primary/10 text-primary font-semibold"><span
+                            class="material-symbols-outlined">article</span>Blog</a></li>
+                <li><a href="contact.html"
+                        class="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"><span
+                            class="material-symbols-outlined">mail</span>Hubungi Kami</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Sticky Top Navigation -->
+    <nav
+        class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-[#dee3e3] dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-3 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <img src="assets/images/logo.png" alt="Lovely Logo" class="h-8 lg:h-10 w-auto" />
+            </a>
+            <!-- Desktop Navigation -->
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="text-[#6b7f80] hover:text-primary transition-colors">Beranda</a>
+                <a href="about.html" class="text-[#6b7f80] hover:text-primary transition-colors">Tentang Kami</a>
+                <a href="services.html" class="text-[#6b7f80] hover:text-primary transition-colors">Layanan</a>
+                <a href="blog.html" class="text-primary font-semibold">Blog</a>
+                <a href="contact.html" class="text-[#6b7f80] hover:text-primary transition-colors">Hubungi Kami</a>
+            </div>
+            <div class="hidden lg:flex items-center gap-4">
+                <a href="https://wa.me/6281234567890" target="_blank"
+                    class="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-semibold hover:bg-primary/90 transition-colors">
+                    <span class="material-symbols-outlined text-lg">chat</span>
+                    Hubungi Kami
+                </a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button onclick="toggleMenu()"
+                class="lg:hidden flex size-10 items-center justify-center rounded-xl bg-transparent text-[#131616] dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                <span class="material-symbols-outlined">menu</span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="pb-24">
+        <!-- Hero Section -->
+        <section class="py-8 lg:py-16">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <div class="max-w-3xl">
+                    <h1 class="text-[32px] lg:text-[56px] font-bold leading-tight mb-4">Blog & Artikel</h1>
+                    <p class="text-[#6b7f80] text-base lg:text-xl leading-relaxed">
+                        Temukan wawasan terbaru tentang energi terbarukan, keberlanjutan, dan inovasi teknologi hijau.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Article -->
+        <section class="mb-8 lg:mb-12">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <a href="article-detail.html?id=1" class="block group">
+                    <div class="relative rounded-2xl overflow-hidden shadow-lg">
+                        <div class="aspect-[16/9] lg:aspect-[21/9] bg-cover bg-center"
+                            style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=1200&q=80');">
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-6 lg:p-12">
+                            <span
+                                class="inline-block px-4 py-1.5 bg-primary text-white text-xs lg:text-sm font-bold rounded-full mb-3">UNGGULAN</span>
+                            <h2 class="text-white text-xl lg:text-4xl font-bold mb-3 max-w-3xl group-hover:underline">
+                                Masa Depan Energi Surya di Indonesia: Peluang dan Tantangan</h2>
+                            <div class="flex items-center gap-3 text-white/70 text-sm lg:text-base">
+                                <span>15 Januari 2024</span>
+                                <span>•</span>
+                                <span>8 menit baca</span>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Article Categories -->
+        <section class="mb-8">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <div class="flex gap-2 lg:gap-3 overflow-x-auto pb-2"
+                    style="-ms-overflow-style: none; scrollbar-width: none;">
+                    <button
+                        class="px-4 lg:px-6 py-2 lg:py-2.5 bg-primary text-white text-sm font-semibold rounded-full whitespace-nowrap">Semua</button>
+                    <button
+                        class="px-4 lg:px-6 py-2 lg:py-2.5 bg-white dark:bg-gray-800 text-[#6b7f80] text-sm font-semibold rounded-full border border-gray-200 dark:border-gray-700 whitespace-nowrap hover:bg-primary hover:text-white hover:border-primary transition-colors">Energi
+                        Surya</button>
+                    <button
+                        class="px-4 lg:px-6 py-2 lg:py-2.5 bg-white dark:bg-gray-800 text-[#6b7f80] text-sm font-semibold rounded-full border border-gray-200 dark:border-gray-700 whitespace-nowrap hover:bg-primary hover:text-white hover:border-primary transition-colors">Tenaga
+                        Angin</button>
+                    <button
+                        class="px-4 lg:px-6 py-2 lg:py-2.5 bg-white dark:bg-gray-800 text-[#6b7f80] text-sm font-semibold rounded-full border border-gray-200 dark:border-gray-700 whitespace-nowrap hover:bg-primary hover:text-white hover:border-primary transition-colors">Hidropower</button>
+                    <button
+                        class="px-4 lg:px-6 py-2 lg:py-2.5 bg-white dark:bg-gray-800 text-[#6b7f80] text-sm font-semibold rounded-full border border-gray-200 dark:border-gray-700 whitespace-nowrap hover:bg-primary hover:text-white hover:border-primary transition-colors">Tips
+                        & Edukasi</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Article Grid -->
+        <section>
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+                    <!-- Article 1 -->
+                    <a href="article-detail.html?id=1"
+                        class="block bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 group hover:shadow-xl transition-shadow">
+                        <div class="aspect-video bg-cover bg-center"
+                            style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80');">
+                        </div>
+                        <div class="p-5 lg:p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span
+                                    class="px-2.5 py-1 bg-primary/10 text-primary text-xs font-semibold rounded">Energi
+                                    Surya</span>
+                                <span class="text-xs text-[#6b7f80]">15 Jan 2024</span>
+                            </div>
+                            <h3 class="font-bold text-base lg:text-lg mb-2 group-hover:text-primary transition-colors">
+                                Masa Depan Energi Surya di Indonesia: Peluang dan Tantangan</h3>
+                            <p class="text-sm text-[#6b7f80] mb-4 line-clamp-2">Indonesia memiliki potensi energi surya
+                                yang luar biasa dengan rata-rata radiasi matahari 4.8 kWh/m² per hari.</p>
+                            <span
+                                class="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                                Baca Selengkapnya <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </span>
+                        </div>
+                    </a>
+
+                    <!-- Article 2 -->
+                    <a href="article-detail.html?id=2"
+                        class="block bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 group hover:shadow-xl transition-shadow">
+                        <div class="aspect-video bg-cover bg-center"
+                            style="background-image: url('https://images.unsplash.com/photo-1532601224476-15c79f2f7a51?w=800&q=80');">
+                        </div>
+                        <div class="p-5 lg:p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span
+                                    class="px-2.5 py-1 bg-lime-green/10 text-lime-green text-xs font-semibold rounded">Tenaga
+                                    Angin</span>
+                                <span class="text-xs text-[#6b7f80]">12 Jan 2024</span>
+                            </div>
+                            <h3 class="font-bold text-base lg:text-lg mb-2 group-hover:text-primary transition-colors">
+                                Ladang Angin Lepas Pantai: Teknologi Masa Depan untuk Indonesia</h3>
+                            <p class="text-sm text-[#6b7f80] mb-4 line-clamp-2">Dengan garis pantai terpanjang di dunia,
+                                Indonesia memiliki potensi besar untuk pengembangan ladang angin lepas pantai.</p>
+                            <span
+                                class="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                                Baca Selengkapnya <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </span>
+                        </div>
+                    </a>
+
+                    <!-- Article 3 -->
+                    <a href="article-detail.html?id=3"
+                        class="block bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 group hover:shadow-xl transition-shadow">
+                        <div class="aspect-video bg-cover bg-center"
+                            style="background-image: url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=800&q=80');">
+                        </div>
+                        <div class="p-5 lg:p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span
+                                    class="px-2.5 py-1 bg-terracotta/10 text-terracotta text-xs font-semibold rounded">Biomassa</span>
+                                <span class="text-xs text-[#6b7f80]">10 Jan 2024</span>
+                            </div>
+                            <h3 class="font-bold text-base lg:text-lg mb-2 group-hover:text-primary transition-colors">
+                                Mengubah Limbah Organik Menjadi Energi: Panduan Lengkap Biogas</h3>
+                            <p class="text-sm text-[#6b7f80] mb-4 line-clamp-2">Biogas adalah salah satu solusi energi
+                                terbarukan yang dapat diimplementasikan di tingkat rumah tangga hingga industri besar.
+                            </p>
+                            <span
+                                class="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                                Baca Selengkapnya <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </span>
+                        </div>
+                    </a>
+
+                    <!-- Article 4 -->
+                    <a href="article-detail.html?id=4"
+                        class="block bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 group hover:shadow-xl transition-shadow">
+                        <div class="aspect-video bg-cover bg-center"
+                            style="background-image: url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800&q=80');">
+                        </div>
+                        <div class="p-5 lg:p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span
+                                    class="px-2.5 py-1 bg-primary/10 text-primary text-xs font-semibold rounded">Hidropower</span>
+                                <span class="text-xs text-[#6b7f80]">8 Jan 2024</span>
+                            </div>
+                            <h3 class="font-bold text-base lg:text-lg mb-2 group-hover:text-primary transition-colors">
+                                PLTA Mini: Solusi Listrik untuk Daerah Terpencil di Indonesia</h3>
+                            <p class="text-sm text-[#6b7f80] mb-4 line-clamp-2">Pembangkit Listrik Tenaga Air skala
+                                kecil menjadi solusi efektif untuk elektrifikasi desa-desa terpencil di pegunungan.</p>
+                            <span
+                                class="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                                Baca Selengkapnya <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </span>
+                        </div>
+                    </a>
+
+                    <!-- Article 5 -->
+                    <a href="article-detail.html?id=5"
+                        class="block bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 group hover:shadow-xl transition-shadow">
+                        <div class="aspect-video bg-cover bg-center"
+                            style="background-image: url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?w=800&q=80');">
+                        </div>
+                        <div class="p-5 lg:p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span
+                                    class="px-2.5 py-1 bg-dark-grey/10 text-dark-grey text-xs font-semibold rounded">Tips
+                                    & Edukasi</span>
+                                <span class="text-xs text-[#6b7f80]">5 Jan 2024</span>
+                            </div>
+                            <h3 class="font-bold text-base lg:text-lg mb-2 group-hover:text-primary transition-colors">5
+                                Cara Mudah Mengurangi Jejak Karbon di Rumah Anda</h3>
+                            <p class="text-sm text-[#6b7f80] mb-4 line-clamp-2">Langkah-langkah sederhana yang dapat
+                                Anda lakukan sehari-hari untuk berkontribusi pada lingkungan yang lebih bersih.</p>
+                            <span
+                                class="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                                Baca Selengkapnya <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </span>
+                        </div>
+                    </a>
+
+                    <!-- Article 6 -->
+                    <a href="article-detail.html?id=6"
+                        class="block bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 group hover:shadow-xl transition-shadow">
+                        <div class="aspect-video bg-cover bg-center"
+                            style="background-image: url('https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=800&q=80');">
+                        </div>
+                        <div class="p-5 lg:p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span
+                                    class="px-2.5 py-1 bg-primary/10 text-primary text-xs font-semibold rounded">Investasi</span>
+                                <span class="text-xs text-[#6b7f80]">3 Jan 2024</span>
+                            </div>
+                            <h3 class="font-bold text-base lg:text-lg mb-2 group-hover:text-primary transition-colors">
+                                Mengapa Investasi di Energi Terbarukan Menjanjikan di 2024</h3>
+                            <p class="text-sm text-[#6b7f80] mb-4 line-clamp-2">Analisis mendalam tentang tren investasi
+                                energi hijau dan mengapa ini adalah waktu yang tepat untuk berinvestasi.</p>
+                            <span
+                                class="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                                Baca Selengkapnya <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </span>
+                        </div>
+                    </a>
+
+                    <!-- Article 7 -->
+                    <a href="article-detail.html?id=7"
+                        class="block bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 group hover:shadow-xl transition-shadow">
+                        <div class="aspect-video bg-cover bg-center"
+                            style="background-image: url('https://images.unsplash.com/photo-1626552978832-f90423a9e7de?w=800&q=80');">
+                        </div>
+                        <div class="p-5 lg:p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span
+                                    class="px-2.5 py-1 bg-terracotta/10 text-terracotta text-xs font-semibold rounded">Geotermal</span>
+                                <span class="text-xs text-[#6b7f80]">1 Jan 2024</span>
+                            </div>
+                            <h3 class="font-bold text-base lg:text-lg mb-2 group-hover:text-primary transition-colors">
+                                Potensi Energi Panas Bumi Indonesia: Ring of Fire sebagai Berkah</h3>
+                            <p class="text-sm text-[#6b7f80] mb-4 line-clamp-2">Indonesia memiliki 40% cadangan panas
+                                bumi dunia. Bagaimana kita memanfaatkan potensi ini secara optimal?</p>
+                            <span
+                                class="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                                Baca Selengkapnya <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </span>
+                        </div>
+                    </a>
+
+                    <!-- Article 8 -->
+                    <a href="article-detail.html?id=8"
+                        class="block bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 group hover:shadow-xl transition-shadow">
+                        <div class="aspect-video bg-cover bg-center"
+                            style="background-image: url('https://images.unsplash.com/photo-1559302504-64aae6ca6b6d?w=800&q=80');">
+                        </div>
+                        <div class="p-5 lg:p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span
+                                    class="px-2.5 py-1 bg-lime-green/10 text-lime-green text-xs font-semibold rounded">Keberlanjutan</span>
+                                <span class="text-xs text-[#6b7f80]">28 Des 2023</span>
+                            </div>
+                            <h3 class="font-bold text-base lg:text-lg mb-2 group-hover:text-primary transition-colors">
+                                Green Building: Standar Bangunan Ramah Lingkungan di Indonesia</h3>
+                            <p class="text-sm text-[#6b7f80] mb-4 line-clamp-2">Mengenal sertifikasi green building dan
+                                bagaimana bangunan ramah lingkungan dapat menghemat energi hingga 50%.</p>
+                            <span
+                                class="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                                Baca Selengkapnya <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </span>
+                        </div>
+                    </a>
+
+                    <!-- Article 9 -->
+                    <a href="article-detail.html?id=9"
+                        class="block bg-white dark:bg-gray-900 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-800 group hover:shadow-xl transition-shadow">
+                        <div class="aspect-video bg-cover bg-center"
+                            style="background-image: url('https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=800&q=80');">
+                        </div>
+                        <div class="p-5 lg:p-6">
+                            <div class="flex items-center gap-2 mb-3">
+                                <span
+                                    class="px-2.5 py-1 bg-dark-grey/10 text-dark-grey text-xs font-semibold rounded">Teknologi</span>
+                                <span class="text-xs text-[#6b7f80]">25 Des 2023</span>
+                            </div>
+                            <h3 class="font-bold text-base lg:text-lg mb-2 group-hover:text-primary transition-colors">
+                                Baterai Penyimpanan Energi: Kunci Transisi Menuju Energi Bersih</h3>
+                            <p class="text-sm text-[#6b7f80] mb-4 line-clamp-2">Teknologi penyimpanan energi semakin
+                                berkembang pesat. Pelajari bagaimana baterai modern mengubah lanskap energi.</p>
+                            <span
+                                class="text-primary font-semibold text-sm flex items-center gap-1 group-hover:gap-2 transition-all">
+                                Baca Selengkapnya <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                            </span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Load More Button -->
+        <section class="py-12 text-center">
+            <div class="max-w-7xl mx-auto px-4 lg:px-8">
+                <button
+                    class="px-8 py-3 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors">
+                    Muat Lebih Banyak
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-background-dark border-t border-[#dee3e3] dark:border-white/10">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 py-12 lg:py-16">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                <div class="lg:col-span-1">
+                    <img src="assets/images/logo.png" alt="Lovely Logo" class="h-8 w-auto mb-4" />
+                    <p class="text-[#6b7f80] text-sm mb-4">Menciptakan teknologi yang bernapas bersama planet ini.</p>
+                    <div class="flex gap-3">
+                        <a href="#"
+                            class="size-10 rounded-full border border-[#dee3e3] dark:border-white/10 flex items-center justify-center text-[#131616] dark:text-white hover:bg-primary hover:text-white hover:border-primary transition-colors">
+                            <span class="material-symbols-outlined text-xl">public</span>
+                        </a>
+                        <a href="#"
+                            class="size-10 rounded-full border border-[#dee3e3] dark:border-white/10 flex items-center justify-center text-[#131616] dark:text-white hover:bg-primary hover:text-white hover:border-primary transition-colors">
+                            <span class="material-symbols-outlined text-xl">alternate_email</span>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Layanan</h4>
+                    <ul class="space-y-2 text-sm text-[#6b7f80]">
+                        <li><a href="services.html" class="hover:text-primary">Energi Surya</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Tenaga Angin</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Hidropower</a></li>
+                        <li><a href="services.html" class="hover:text-primary">Geotermal</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Perusahaan</h4>
+                    <ul class="space-y-2 text-sm text-[#6b7f80]">
+                        <li><a href="about.html" class="hover:text-primary">Tentang Kami</a></li>
+                        <li><a href="blog.html" class="hover:text-primary">Blog</a></li>
+                        <li><a href="contact.html" class="hover:text-primary">Hubungi Kami</a></li>
+                        <li><a href="#" class="hover:text-primary">Karir</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Kontak</h4>
+                    <ul class="space-y-2 text-sm text-[#6b7f80]">
+                        <li class="flex items-start gap-2"><span
+                                class="material-symbols-outlined text-lg">location_on</span>Jl. Inovasi Hijau No. 123,
+                            Jakarta</li>
+                        <li class="flex items-start gap-2"><span
+                                class="material-symbols-outlined text-lg">mail</span>hello@lovely.id</li>
+                        <li class="flex items-start gap-2"><span
+                                class="material-symbols-outlined text-lg">call</span>+62 812 3456 7890</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-[#dee3e3] dark:border-white/10 mt-8 pt-8 text-center text-sm text-[#6b7f80]">
+                <p>© 2024 Lovely Tech. Semua hak dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6281234567890" target="_blank"
+        class="fixed bottom-20 right-4 lg:bottom-8 lg:right-8 z-[55] bg-[#25D366] hover:bg-[#128C7E] text-white w-14 h-14 lg:w-16 lg:h-16 rounded-full shadow-lg flex items-center justify-center transition-all active:scale-95">
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 16 16"
+            class="lg:w-8 lg:h-8">
+            <path
+                d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326z" />
+        </svg>
+    </a>
+
+    <!-- Back to Top Button -->
+    <button id="backToTop" onclick="scrollToTop()"
+        class="fixed bottom-4 right-4 lg:bottom-8 lg:right-28 z-[55] bg-primary hover:bg-primary/90 text-white w-12 h-12 lg:w-14 lg:h-14 rounded-full shadow-lg flex items-center justify-center transition-all active:scale-95 opacity-0 invisible">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const overlay = document.getElementById('overlay');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Back to Top
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Show/Hide Back to Top Button
+        window.addEventListener('scroll', function () {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.remove('opacity-0', 'invisible');
+                backToTop.classList.add('opacity-100', 'visible');
+            } else {
+                backToTop.classList.add('opacity-0', 'invisible');
+                backToTop.classList.remove('opacity-100', 'visible');
+            }
+        });
+    </script>
+</body>
+
+</html>
